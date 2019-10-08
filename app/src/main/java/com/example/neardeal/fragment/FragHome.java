@@ -11,9 +11,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.neardeal.R;
+import com.example.neardeal.adapter.StoreAdapter;
 import com.example.neardeal.network.ApiClient;
 import com.example.neardeal.network.ApiEndpoint;
 import com.example.neardeal.response.StoreResponse;
@@ -28,8 +30,9 @@ import retrofit2.Response;
 public class FragHome extends Fragment {
 
     ApiEndpoint apiEndpoint;
-    ImageView imgTest;
     RecyclerView recStore;
+
+    StoreAdapter adapter;
 
     @Nullable
     @Override
@@ -38,12 +41,18 @@ public class FragHome extends Fragment {
 
         apiEndpoint = ApiClient.getRetrofit().create(ApiEndpoint.class);
 
-        imgTest = view.findViewById(R.id.img_test);
         recStore = view.findViewById(R.id.rec_store);
 
         getStore();
 
         return view;
+    }
+
+    private void setRecStore(List<StoreResponse> listStore) {
+        adapter = new StoreAdapter(getContext(), listStore);
+        recStore.setLayoutManager(new LinearLayoutManager(getContext()));
+        recStore.setAdapter(adapter);
+
     }
 
     private void getStore() {
@@ -53,13 +62,7 @@ public class FragHome extends Fragment {
             public void onResponse(Call<List<StoreResponse>> call, Response<List<StoreResponse>> response) {
                 List<StoreResponse> listStoreResponse = response.body();
 
-                StoreResponse response1 = listStoreResponse.get(1);
-
-                Toast.makeText(getContext(), "Nama Toko: " + response1.getName(), Toast.LENGTH_SHORT).show();
-
-                Picasso.get()
-                        .load("https://github.com/square/picasso/raw/master/website/staticdadsd/sample.png")
-                        .into(imgTest);
+                setRecStore(listStoreResponse);
             }
 
             @Override

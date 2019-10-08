@@ -4,12 +4,15 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.neardeal.R;
 import com.example.neardeal.response.StoreResponse;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -33,7 +36,10 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.tvTitle.setText(listStore.get(position).getName());
+        holder.tvDesc.setText(listStore.get(position).getDescription());
 
+        Picasso.get().load(listStore.get(position).getPhoto()).into(holder.imgStore);
     }
 
     @Override
@@ -42,8 +48,17 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+
+        ImageView imgStore;
+        TextView tvTitle, tvDesc;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            imgStore = itemView.findViewById(R.id.img_store);
+            tvTitle = itemView.findViewById(R.id.tv_store_name);
+            tvDesc = itemView.findViewById(R.id.tv_store_desc);
+
         }
     }
 }
