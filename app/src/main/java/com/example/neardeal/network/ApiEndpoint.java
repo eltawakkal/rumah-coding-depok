@@ -6,10 +6,11 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 
 public interface ApiEndpoint {
 
-    @GET("get_store.php")
+    @POST("get_store.php")
     Call<List<StoreResponse>> getStore();
 
 }

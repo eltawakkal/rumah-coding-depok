@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_store"
+            android:checked="true"
+            android:title="List Store"
+            android:icon="@drawable/store_24dp"/>
+
+        <item
+            android:id="@+id/nav_product"
+            android:title="List Product"
+            android:icon="@drawable/product_24dp"/>
+
+    </group>
+
+
+</menu>

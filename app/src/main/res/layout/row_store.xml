@@ -26,19 +26,22 @@
             <LinearLayout
                 android:gravity="center_vertical"
                 android:orientation="vertical"
+                android:layout_marginRight="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/tv_store_name"
                     android:text="Nama Toko"
-                    android:textSize="18sp"
+                    android:textSize="18dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
                 <TextView
                     android:id="@+id/tv_store_desc"
                     android:text="Deskripsi Toko Disini"
+                    android:maxLines="2"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
