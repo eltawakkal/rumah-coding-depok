@@ -9,7 +9,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,20 +31,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        Toast.makeText(this, "Main OnCreate", Toast.LENGTH_LONG).show();
+
         toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
+        toolbar.setTitle(R.string.app_name);
 
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.frag_container, new FragProductContainer())
-                .commit();
+        if (savedInstanceState == null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.frag_container, new FragHome())
+                    .commit();
+        }
+
 
         //setup navigationview
         drawerLayout = findViewById(R.id.drawer_main);
         navigationView = findViewById(R.id.navigation_main);
 
         drawerToggle = new ActionBarDrawerToggle(
-                this, drawerLayout, toolbar,
+                this, drawerLayout,
                 R.string.open_drawer,
                 R.string.close_drawer);
 
@@ -87,13 +93,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()) {
             case R.id.nav_store:
                 getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, new FragHome()).commit();
-                Toast.makeText(this, "Store", Toast.LENGTH_SHORT).show();
+                item.setChecked(true);
+                drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             case R.id.nav_product:
-                Toast.makeText(this, "Product", Toast.LENGTH_SHORT).show();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, new FragProductContainer()).commit();
+                item.setChecked(true);
+                drawerLayout.closeDrawer(GravityCompat.START);
                 break;
         }
+
         return true;
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+//        Toast.makeText(this, "Main onResume", Toast.LENGTH_SHORT).show();
+    }
 }

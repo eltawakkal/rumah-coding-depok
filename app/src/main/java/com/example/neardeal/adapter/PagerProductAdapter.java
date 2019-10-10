@@ -17,8 +17,7 @@ public class PagerProductAdapter extends FragmentPagerAdapter {
 
     @NonNull
     @Override
-    public Fragment getItem(int position) {
-
+    public Fragment getItem(int position) {//
         switch (position) {
             case 0:
                 return new FragDealProduct();

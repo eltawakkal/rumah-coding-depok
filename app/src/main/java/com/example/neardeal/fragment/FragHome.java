@@ -3,11 +3,8 @@ package com.example.neardeal.fragment;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,7 +17,6 @@ import com.example.neardeal.adapter.StoreAdapter;
 import com.example.neardeal.network.ApiClient;
 import com.example.neardeal.network.ApiEndpoint;
 import com.example.neardeal.response.StoreResponse;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 

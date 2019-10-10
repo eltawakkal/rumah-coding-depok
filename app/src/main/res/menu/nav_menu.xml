@@ -2,13 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <group
-        android:checkableBehavior="single">
+    <group android:checkableBehavior="single">
 
         <item
             android:id="@+id/nav_store"
-            android:checked="true"
             android:title="List Store"
+            android:checked="true"
             android:icon="@drawable/store_24dp"/>
 
         <item

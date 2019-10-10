@@ -1,10 +1,12 @@
 package com.example.neardeal;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.neardeal.network.ApiClient;
 import com.example.neardeal.network.ApiEndpoint;
@@ -13,14 +15,11 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.PolygonOptions;
-import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.ArrayList;
@@ -34,6 +33,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     MapView mapStore;
     GoogleMap mGoogleMap;
+    Toolbar toolbar;
 
     ApiEndpoint apiEndpoint;
 
@@ -41,6 +41,15 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+
+        toolbar = findViewById(R.id.toolbar_map);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         mapStore = findViewById(R.id.map_store);
         apiEndpoint = ApiClient.getRetrofit().create(ApiEndpoint.class);
@@ -116,4 +125,5 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             }
         });
     }
+
 }

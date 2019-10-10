@@ -8,15 +8,14 @@
     android:id="@+id/drawer_main"
     tools:context=".MainActivity">
 
+    <include layout="@layout/content_main"/>
+
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_main"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/nav_menu"
-        android:onClick="onClickNavItem"
         android:layout_gravity="start"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"/>
-
-    <include layout="@layout/content_main"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>

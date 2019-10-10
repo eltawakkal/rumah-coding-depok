@@ -1,6 +1,7 @@
 package com.example.neardeal.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.neardeal.DetailStore;
 import com.example.neardeal.R;
 import com.example.neardeal.response.StoreResponse;
 import com.squareup.picasso.Picasso;
@@ -35,11 +37,20 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.tvTitle.setText(listStore.get(position).getName());
         holder.tvDesc.setText(listStore.get(position).getDescription());
 
         Picasso.get().load(listStore.get(position).getPhoto()).into(holder.imgStore);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DetailStore.class);
+                intent.putExtra("id", listStore.get(position).getId());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

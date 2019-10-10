@@ -7,7 +7,7 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_product_container"
-        android:elevation="1dp"
+        android:elevation="3dp"
         android:background="@color/colorPrimary"
         app:tabTextColor="#FFF"
         app:tabIndicatorColor="@color/colorAccent"

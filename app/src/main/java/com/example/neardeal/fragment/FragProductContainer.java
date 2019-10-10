@@ -29,10 +29,9 @@ public class FragProductContainer extends Fragment {
         pagerProduct = view.findViewById(R.id.pager_product_container);
         tabProduct = view.findViewById(R.id.tab_product_container);
 
-        pagerProductAdapter = new PagerProductAdapter(getFragmentManager());
 
+        pagerProductAdapter = new PagerProductAdapter(getChildFragmentManager());
         pagerProduct.setAdapter(pagerProductAdapter);
-
         tabProduct.setupWithViewPager(pagerProduct);
 
         return view;
