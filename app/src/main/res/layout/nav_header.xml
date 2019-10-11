@@ -11,6 +11,7 @@
         android:layout_height="100dp"/>
 
     <TextView
+        android:id="@+id/tv_user_nav"
         android:text="Nama Pengguna"
         android:textColor="#fff"
         android:layout_width="wrap_content"

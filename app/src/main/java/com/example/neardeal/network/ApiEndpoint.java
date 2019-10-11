@@ -3,6 +3,7 @@ package com.example.neardeal.network;
 import com.example.neardeal.response.DealResponse;
 import com.example.neardeal.response.ProductResponse;
 import com.example.neardeal.response.StoreResponse;
+import com.example.neardeal.response.UserResponse;
 
 import java.util.List;
 
@@ -26,5 +27,17 @@ public interface ApiEndpoint {
     @POST("get_spec_store.php")
     @FormUrlEncoded
     Call<StoreResponse> getSpecStore(@Field("idStore") String idStore);
+
+    @POST("user_login.php")
+    @FormUrlEncoded
+    Call<UserResponse> cekUser(
+            @Field("user") String user,
+            @Field("pass") String pass);
+
+    @POST("add_user.php")
+    @FormUrlEncoded
+    Call<UserResponse> addUser(
+            @Field("user") String user,
+            @Field("pass") String pass);
 
 }

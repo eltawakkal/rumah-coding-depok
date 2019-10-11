@@ -8,5 +8,11 @@
         android:icon="@drawable/map"
         app:showAsAction="always"/>
 
+    <item
+        android:id="@+id/action_logout"
+        android:title="Logout"/>
 
+    <item
+        android:id="@+id/action_add_user"
+        android:title="add user"/>
 </menu>

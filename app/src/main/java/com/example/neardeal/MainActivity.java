@@ -12,13 +12,17 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.neardeal.fragment.FragHome;
 import com.example.neardeal.fragment.FragProductContainer;
+import com.example.neardeal.preference.PrefStore;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    PrefStore prefStore;
 
     Toolbar toolbar;
 
@@ -26,13 +30,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     ActionBarDrawerToggle drawerToggle;
 
+    TextView tvUserNav;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        Toast.makeText(this, "Main OnCreate", Toast.LENGTH_LONG).show();
+        prefStore = new PrefStore(this);
 
         toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
@@ -49,6 +54,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //setup navigationview
         drawerLayout = findViewById(R.id.drawer_main);
         navigationView = findViewById(R.id.navigation_main);
+
+        View view = navigationView.getHeaderView(0);
+
+        tvUserNav = view.findViewById(R.id.tv_user_nav);
+        tvUserNav.setText(prefStore.getUsername());
 
         drawerToggle = new ActionBarDrawerToggle(
                 this, drawerLayout,
@@ -79,9 +89,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()) {
+            case R.id.action_add_user:
+                Intent intentAddUser = new Intent(this, AddUser.class);
+                startActivity(intentAddUser);
+                break;
             case R.id.action_map:
                 Intent intentMap = new Intent(this, MapActivity.class);
                 startActivity(intentMap);
+                break;
+            case R.id.action_logout:
+                Intent intentLogin = new Intent(this, LoginActivity.class);
+                startActivity(intentLogin);
+                prefStore.deleteUser();
+                finish();
                 break;
         }
 

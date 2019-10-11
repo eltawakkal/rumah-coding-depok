@@ -43,7 +43,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
 
         Picasso.get().load(listStore.get(position).getPhoto()).into(holder.imgStore);
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.imgStore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, DetailStore.class);
